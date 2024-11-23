@@ -5,10 +5,14 @@ Rails.application.routes.draw do
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check
 
-  # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
-  # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
-  # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
+  scope '/api', defaults: { format: :json } do
+    # QueueMessages routes
+    resources :queue_messages, only: [:index]
 
-  # Defines the root path route ("/")
+    # Create and retrieve messages in specific queues
+    post '/:queue_name', to: 'queue_messages#create', as: :create_queue_message
+    get '/:queue_name', to: 'queue_messages#show', as: :get_queue_message
+  end
+  # Root path route
   # root "posts#index"
 end
