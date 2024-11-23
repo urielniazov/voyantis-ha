@@ -48,3 +48,40 @@ A web application that allows users to view and manage queues of messages in rea
  - `npm install`
  - `npm start`
 
+
+## API endpoints
+### GET /api/queue_messages
+Fetches a list of available queues with message counts.
+
+```
+[
+  {
+    "name": "Queue 1",
+    "message_count": 5
+  },
+  {
+    "name": "Queue 2",
+    "message_count": 10
+  }
+]
+
+```
+### GET /api/{queue_name}
+Fetches the next message from the specified queue.
+
+**Query Params:**
+
+`timeout`: Optional timeout in milliseconds (default is 10000ms)
+**Response:**
+
+**204**: If no message is available after the timeout.
+**200**: Returns the message from the queue.
+{
+  "message": "The next message from the queue"
+}
+
+### POST /api/{queue_name}
+Adds a new message to the specified queue. The message should be sent in the body as JSON.
+
+**Request Body**
+The request body should contain the message you want to add to the queue as json
