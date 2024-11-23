@@ -1,38 +1,104 @@
-.App {
+@font-face {
+  font-family: 'Poppins';
+  src: url('https://cdn.prod.website-files.com/606bfdb804bc7a3e32538a79/645b59953713b7687e0f1c44_Poppins-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('https://cdn.prod.website-files.com/606bfdb804bc7a3e32538a79/645b59954b1d5c0be275d396_Poppins-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('https://cdn.prod.website-files.com/606bfdb804bc7a3e32538a79/645b59951425098b52838a15_Poppins-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('https://cdn.prod.website-files.com/606bfdb804bc7a3e32538a79/645b5995650f33919b52169e_Poppins-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('https://cdn.prod.website-files.com/606bfdb804bc7a3e32538a79/650c426d7da67ea9143f67fa_Poppins-ExtraLight.ttf') format('truetype');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+body {
+  font-family: Poppins,sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f2f0ee; /* Dark background */
+  color: #003246;
+}
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.header {
   text-align: center;
+  margin-top: 50px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+h1 {
+  font-size: 36px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+button {
+  color: #fff;
+  text-align: center;
+  background-color: #003246;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 20px;
+  border-radius: 5px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+button:hover {
+  color: #003246;
+  background-color: #00324600;
+  border: 1px solid #003246;
 }
 
-.App-link {
-  color: #61dafb;
+ul {
+  list-style-type: none;
+  padding: 0;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+li {
+  background-color: #fff; /* Dark background for list items */
+  margin: 10px;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+li:hover {
+  background-color: #003246;
+  color: #fff;
+}
+
+#queue-info {
+  margin-top: 20px;
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 5px;
 }

@@ -1,25 +1,36 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import QueueList from './components/QueueList';
+import QueueDetail from './components/QueueDetail';
 
-function App() {
+const App = () => {
+  const [selectedQueue, setSelectedQueue] = useState(null);
+
+  const queues = [
+    { name: 'Queue 1', messageCount: 5 },
+    { name: 'Queue 2', messageCount: 10 },
+    { name: 'Queue 3', messageCount: 15 },
+  ];
+
+  const handleSelectQueue = (queue) => {
+    setSelectedQueue(queue);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div className="container">
+      <header className="header">
+        <h1>Voyantis Queue Viewer</h1>
       </header>
+      <main>
+        <section id="queues">
+          <QueueList queues={queues} onSelectQueue={handleSelectQueue} />
+        </section>
+        <section id="queue-detail">
+          <QueueDetail queue={selectedQueue} />
+        </section>
+      </main>
     </div>
   );
-}
+};
 
 export default App;
