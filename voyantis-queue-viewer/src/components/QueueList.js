@@ -7,7 +7,7 @@ const QueueList = ({ queues, onSelectQueue }) => {
       <ul>
         {queues.map((queue) => (
           <li key={queue.name} onClick={() => onSelectQueue(queue)}>
-            {queue.name} - {queue.messageCount} messages
+            {queue.name} - {queue.message_count} messages
           </li>
         ))}
       </ul>

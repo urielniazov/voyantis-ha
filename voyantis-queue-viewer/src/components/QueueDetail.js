@@ -1,20 +1,28 @@
 import React, { useState } from 'react';
+import { fetchQueueMessages } from '../api'; // Import the function to fetch messages
 
-const QueueDetail = ({ queue }) => {
+const QueueDetail = ({ queue, onUpdateQueues }) => {
   const [response, setResponse] = useState(null);
 
   const handleGoClick = async () => {
-    // Simulate fetching queue data
-    const queueMessages = await fetchQueueMessages(queue.name);
-    setResponse(queueMessages);
-  };
+    if (!queue) return; // Return if no queue is selected
 
-  const fetchQueueMessages = async (queueName) => {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(`Messages for ${queueName}: [Message 1, Message 2, Message 3]`);
-      }, 2000);
-    });
+    try {
+      // Fetch the next message from the queue
+      const message = await fetchQueueMessages(queue.name);
+      
+      if (message) {
+        setResponse(message);
+      } else {
+        setResponse('No message in the queue.');
+      }
+
+      // Call onUpdateQueues to refresh the queue list (message count)
+      await onUpdateQueues(); // Ensure this is awaited so the queues are updated before rendering
+    } catch (error) {
+      console.error("Error fetching queue messages:", error);
+      setResponse('Error fetching messages.');
+    }
   };
 
   return (
@@ -24,10 +32,10 @@ const QueueDetail = ({ queue }) => {
         <>
           <div id="queue-info">
             <p>Queue Name: {queue.name}</p>
-            <p>Number of Messages: {queue.messageCount}</p>
           </div>
           <button onClick={handleGoClick}>Go</button>
-          {response && <div id="response">{response}</div>}
+          {response && <div id="response">{JSON.stringify(response)}</div>}
+
         </>
       ) : (
         <p>Select a queue to view details.</p>
